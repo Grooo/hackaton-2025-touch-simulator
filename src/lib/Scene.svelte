@@ -215,8 +215,7 @@
 		}
 
 		volume = clamp( volume, 0, 1 );
-		sound.volume( volume * 4 );
-
+		sound.volume( volume * 5 );
 	}
 
 	function setupEvents() {
