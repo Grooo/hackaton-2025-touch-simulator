@@ -23,8 +23,8 @@
 	let videoElem = null;
 	let sequenceElem = null;
 	let framePercent = 0;
-	let frame = 0;
 	const totalFrames = 26;
+	let frame = Math.ceil( totalFrames * 0.36 );
 
 	let rotation = 0;
 	
@@ -47,9 +47,9 @@
 		// 
 		if ( raf ){
 			if( rotation ){
-				framePercent = 1-clamp((0.75-rotation.x) * 3, 0, 1);
+				framePercent = 1-clamp((0.75-rotation.x) * 3.5, 0, 1);
 				frame = Math.round( framePercent * totalFrames );
-				console.log( rotation.x, framePercent, frame );
+				//console.log( rotation.x, framePercent, frame );
 			}
 		}
 	}
@@ -108,7 +108,7 @@
 
 	.video-container
 		.sequence
-			ImageSequence( bind:sequenceElem src="img/robot/ezgif-frame-[000].webp" total="{totalFrames}" offset="{38}" frame="{frame}" )
+			ImageSequence( bind:sequenceElem src="/img/robot/ezgif-frame-[000].webp" total="{totalFrames}" offset="{38}" frame="{frame}" )
 
 	+if( "!isWebcamEnabled" )
 		#enable-webcam(

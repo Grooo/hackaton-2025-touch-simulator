@@ -75,6 +75,12 @@
       "_index.js"
     ]
   },
+  "src/routes/+layout.js": {
+    "file": "entries/pages/_layout.js",
+    "name": "entries/pages/_layout",
+    "src": "src/routes/+layout.js",
+    "isEntry": true
+  },
   "src/routes/+layout.svelte": {
     "file": "entries/pages/_layout.svelte.js",
     "name": "entries/pages/_layout.svelte",
@@ -100,6 +106,18 @@
     ],
     "css": [
       "_app/immutable/assets/_page.BK-qIcuS.css"
+    ]
+  },
+  "src/routes/404/+page.svelte": {
+    "file": "entries/pages/404/_page.svelte.js",
+    "name": "entries/pages/404/_page.svelte",
+    "src": "src/routes/404/+page.svelte",
+    "isEntry": true,
+    "imports": [
+      "_ssr.js"
+    ],
+    "css": [
+      "_app/immutable/assets/_page.CnNUJAGH.css"
     ]
   },
   "src/routes/robot/+page.svelte": {
