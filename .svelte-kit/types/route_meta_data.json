@@ -1,4 +1,9 @@
 {
-	"/": [],
-	"/robot": []
+	"/": [
+		"src/routes/+layout.js",
+		"src/routes/+layout.js"
+	],
+	"/robot": [
+		"src/routes/+layout.js"
+	]
 }
