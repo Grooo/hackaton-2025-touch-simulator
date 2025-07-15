@@ -1,12 +1,5 @@
 {
-	"/": [
-		"src/routes/+layout.js",
-		"src/routes/+layout.js"
-	],
-	"/404": [
-		"src/routes/+layout.js"
-	],
-	"/robot": [
-		"src/routes/+layout.js"
-	]
+	"/": [],
+	"/404": [],
+	"/robot": []
 }

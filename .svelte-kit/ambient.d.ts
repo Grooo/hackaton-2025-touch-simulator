@@ -54,7 +54,6 @@ declare module '$env/static/private' {
 	export const VSCODE_PROFILE_INITIALIZED: string;
 	export const npm_execpath: string;
 	export const PATH: string;
-	export const LaunchInstanceID: string;
 	export const npm_package_json: string;
 	export const __CFBundleIdentifier: string;
 	export const USER_ZDOTDIR: string;
@@ -65,14 +64,12 @@ declare module '$env/static/private' {
 	export const EDITOR: string;
 	export const npm_lifecycle_event: string;
 	export const LANG: string;
-	export const npm_package_name: string;
 	export const NODE_PATH: string;
 	export const XPC_FLAGS: string;
 	export const VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 	export const npm_config_npm_version: string;
 	export const npm_config_node_gyp: string;
 	export const XPC_SERVICE_NAME: string;
-	export const npm_package_version: string;
 	export const VSCODE_INJECTION: string;
 	export const HOME: string;
 	export const SHLVL: string;
@@ -88,7 +85,6 @@ declare module '$env/static/private' {
 	export const INFOPATH: string;
 	export const GIT_ASKPASS: string;
 	export const VSCODE_GIT_ASKPASS_NODE: string;
-	export const SECURITYSESSIONID: string;
 	export const COLORTERM: string;
 	export const npm_config_prefix: string;
 	export const npm_node_execpath: string;
@@ -152,7 +148,6 @@ declare module '$env/dynamic/private' {
 		VSCODE_PROFILE_INITIALIZED: string;
 		npm_execpath: string;
 		PATH: string;
-		LaunchInstanceID: string;
 		npm_package_json: string;
 		__CFBundleIdentifier: string;
 		USER_ZDOTDIR: string;
@@ -163,14 +158,12 @@ declare module '$env/dynamic/private' {
 		EDITOR: string;
 		npm_lifecycle_event: string;
 		LANG: string;
-		npm_package_name: string;
 		NODE_PATH: string;
 		XPC_FLAGS: string;
 		VSCODE_GIT_ASKPASS_EXTRA_ARGS: string;
 		npm_config_npm_version: string;
 		npm_config_node_gyp: string;
 		XPC_SERVICE_NAME: string;
-		npm_package_version: string;
 		VSCODE_INJECTION: string;
 		HOME: string;
 		SHLVL: string;
@@ -186,7 +179,6 @@ declare module '$env/dynamic/private' {
 		INFOPATH: string;
 		GIT_ASKPASS: string;
 		VSCODE_GIT_ASKPASS_NODE: string;
-		SECURITYSESSIONID: string;
 		COLORTERM: string;
 		npm_config_prefix: string;
 		npm_node_execpath: string;

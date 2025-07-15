@@ -1,10 +1,11 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import glsl from 'vite-plugin-glsl';
-import { defineConfig } from 'vite';
 
-export default defineConfig({
-	plugins: [
-		sveltekit(),
-		glsl()
-	]
-});
+/** @type {import('vite').UserConfig} */
+const config = {
+  plugins: [sveltekit()],
+  define: {
+    'import.meta.env.VERCEL_ANALYTICS_ID': JSON.stringify(process.env.VERCEL_ANALYTICS_ID)
+  }
+};
+
+export default config;
