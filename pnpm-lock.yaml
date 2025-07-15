@@ -43,7 +43,7 @@ importers:
         specifier: ^0.10.17
         version: 0.10.21
       '@sveltejs/adapter-vercel':
-        specifier: ^5.3.0
+        specifier: ^5.7.2
         version: 5.7.2(@sveltejs/kit@2.24.0(@sveltejs/vite-plugin-svelte@6.0.0(svelte@5.36.1)(vite@7.0.4(@types/node@24.0.14)(stylus@0.64.0)))(svelte@5.36.1)(vite@7.0.4(@types/node@24.0.14)(stylus@0.64.0)))(rollup@4.45.1)
       '@sveltejs/kit':
         specifier: ^2.0.0
