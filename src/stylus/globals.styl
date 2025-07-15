@@ -1,0 +1,56 @@
+@import "./fonts"
+
+//- Media queries
+$LgMin 	= "(min-width: 1280px)"
+$Lg 	= "(max-width: 1280px)"
+$Md 	= "(max-width: 1024px)"
+$Md2 	= "(max-width: 890px)"
+$Sm 	= "(max-width: 768px)"
+
+:root
+	--black rgb(24, 24, 24)
+	--black2 rgb(75, 75, 75)
+	--white rgb(247, 247, 247)
+
+$b = var(--black)
+$b2 = var(--black2)
+$w = var(--white)
+
+//- Functions
+smooth-image()
+	//backface-visibility hidden
+	//-webkit-transform scale(1)
+	perspective 1000
+	transform translateZ(0)
+	transform translate3d(0, 0, 0)
+	transform-style preserve-3d
+	
+	-ms-interpolation-mode nearest-neighbor // IE 7+ (non-standard property)
+	image-rendering -webkit-optimize-contrast // Safari 6, UC Browser 9.9
+	image-rendering -webkit-crisp-edges // Safari 7+
+	image-rendering -moz-crisp-edges // Firefox 3.6+
+	image-rendering -o-crisp-edges // Opera 12
+	image-rendering optimizeSpeed // Chrome 41+ and Opera 26+
+
+absolute100( _win = false )
+	position absolute
+	top 0
+	left 0
+	if _win
+		width 100vw
+		height 100vh
+		height -webkit-fill-available // iOS Safari
+	else
+		width 100%
+		height 100%
+
+_flex( _flow = row, _wrap = false, _justify = center, _align = center )
+	display flex
+
+	if _wrap
+		flex-flow _flow wrap
+	else
+		flex-flow _flow nowrap
+	
+	justify-content _justify
+	align-items _align
