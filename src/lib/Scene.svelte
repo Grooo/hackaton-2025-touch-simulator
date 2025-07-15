@@ -203,7 +203,7 @@
 		}
 		volume -= 0.1;
 
-		const newFrame = Math.round( framePercent * totalFrames );
+		const newFrame = clamp(Math.round( framePercent * totalFrames ), 0, totalFrames - 1);
 		if( newFrame !== frame ) {
 			frame = newFrame;
 			// -

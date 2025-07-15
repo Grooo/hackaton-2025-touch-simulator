@@ -22,26 +22,41 @@
 </script>
 
 <template lang="pug">
-	picture
-		source(
-			srcset="{currentFrameSrc}"
-			type="image/webp"
-		)
-		img(
-			src="{currentFrameSrc}"
-		)
+	.wrapper( ) 
+
+		+each('preloadFrames as frameSrc, i')
+			picture( style="display: { frame === i ? 'block' : 'none'}" )
+				source(
+					srcset="{frameSrc}"
+					type="image/webp"
+				)
+				img(
+					src="{frameSrc}"
+				)
 
 </template>
 
 <style lang="stylus">
 	@require "../stylus/globals"
 	// -
-	picture,
-	img
+	.wrapper
 		position relative
 		display block
 		width 100%
 		height 100%
-		object-fit cover
+
+		picture,
+		img
+			position absolute
+			width 100%
+			height 100%
+			object-fit cover
+
+		picture
+			display none
+
+			&.show
+				display block
+
 	
 </style>
