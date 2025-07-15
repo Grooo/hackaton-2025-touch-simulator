@@ -29,16 +29,16 @@ yarn-error.log*
 .env
 
 # vercel
-.vercel/
+/.vercel/
 
 # vscode
-.vscode/
+/.vscode/
 
 # cursor
-.cursor/
+/.cursor/
 
 # svelte
-.svelte-kit/
+/.svelte-kit/
 
 # typescript
 *.tsbuildinfo
