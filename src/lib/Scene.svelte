@@ -12,7 +12,7 @@
 	const Howl = howler.Howl;
 	let sound = null;
 	let soundDuration = 0;
-	let volume = 0;
+	let volume = 1;
 
 	// -
 	let canvasEl = null;
@@ -28,9 +28,9 @@
 
 	let videoElem = null;
 	let sequenceElem = null;
-	let framePercent = 0;
+	let framePercent = 1;
 	const totalFrames = 105;
-	let frame = totalFrames - 1;
+	let frame = 0;
 	const minDistance = 30;
 	const maxDistance = 400;
 	const distanceMultiplier = 1;
@@ -51,6 +51,7 @@
 		velFrame: 0.075,
 		translate: true,
 		rotate: true,
+		velRotate: 0.075,
 		pointerSize: 3,
 	}
 	// -
@@ -185,7 +186,7 @@
 	}
 
 	function updateVideo() {
-
+		let newFramePercent = 1;
 
 		position = params.translate ? {
 			x: pointers[1].px + ((pointers[0].px - pointers[1].px) * 0.5),
@@ -194,36 +195,38 @@
 			x: $win.w * 0.4,
 			y: $win.h * 0.4
 		}
-		rotation = params.rotate ? Math.atan2( pointers[0].py - pointers[1].py, pointers[0].px - pointers[1].px ) * 0.5 : 0;
+		rotation += (( params.rotate ? Math.atan2( pointers[0].py - pointers[1].py, pointers[0].px - pointers[1].px ) * 0.5 : 0 ) - rotation ) * params.velRotate;
 		// -
 		const distance = Math.sqrt( Math.pow( pointers[0].x - pointers[1].x, 2 ) + Math.pow( pointers[0].y - pointers[1].y, 2 ) );
 		const normalizedDistance = (distance - minDistance) / (maxDistance - minDistance);
-		framePercent += ( clamp(normalizedDistance, 0, 1) - framePercent ) * params.velFrame;
 
-		if(framePercent === 0){
-			frame = totalFrames - 1;
+		if( !params.translate ){
+			newFramePercent = 1;
 		}else{
-			const newFrame = clamp(Math.round( framePercent * totalFrames ), 0, totalFrames - 1);
-			if( newFrame !== frame ) {
-				frame = newFrame;
-				// -
-				volume += 0.3;
-				sound.seek([soundDuration * framePercent], 0);
-				if( !sound.playing() ){
-					sound.play();
-				}
-			}
+			newFramePercent = clamp(normalizedDistance, 0, 1);
 		}
 
 		if( sound.playing() ){
 			sound.pause();
 		}
-		volume -= 0.1;
+		volume -= 0.15;
 
-		
 
+		framePercent += ( newFramePercent - framePercent ) * params.velFrame;
+
+		const newFrame = clamp(Math.round( framePercent * totalFrames ), 0, totalFrames - 1);
+
+		if( newFrame !== frame ) {
+			frame = newFrame;
+			// -
+			volume += 0.25;
+			sound.seek([soundDuration * framePercent], 0);
+			if( !sound.playing() ){
+				sound.play();
+			}
+		}
 		volume = clamp( volume, 0, 1 );
-		sound.volume( volume * 5 );
+		sound.volume( volume );
 	}
 
 	function setupEvents() {
@@ -257,7 +260,7 @@
 		canvasCtx = canvasEl.getContext("2d");
 		// -
 		sound = new Howl({
-			src: ['audio/11L-unfold_metallic_leat-1752499582973.mp3'],
+			src: ['./audio/11L-unfold_metallic_leat-1752499582973.mp3'],
 			autoplay: false,
 			loop: false,
 			volume: 1,
@@ -291,7 +294,7 @@
 
 	.video-container( style="--rotation: {rotation}rad; --pos-x: {position.x}px; --pos-y: {position.y}px" )
 		.sequence
-			ImageSequence( bind:sequenceElem src="img/metallic/ezgif-frame-[000].webp" total="{totalFrames}" frame="{frame}" )
+			ImageSequence( bind:sequenceElem src="./img/metallic/ezgif-frame-[000].webp" total="{totalFrames}" frame="{frame}" )
 
 	+if( "!isWebcamEnabled" )
 		#enable-webcam(

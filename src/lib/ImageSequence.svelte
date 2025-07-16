@@ -22,7 +22,7 @@
 </script>
 
 <template lang="pug">
-	.wrapper( ) 
+	.wrapper( style="--frame: {frame}" ) 
 
 		+each('preloadFrames as frameSrc, i')
 			picture( style="display: { frame === i ? 'block' : 'none'}" )
