@@ -29,8 +29,8 @@
 	let videoElem = null;
 	let sequenceElem = null;
 	let framePercent = 0;
-	let frame = 0;
 	const totalFrames = 105;
+	let frame = totalFrames - 1;
 	const minDistance = 30;
 	const maxDistance = 400;
 	const distanceMultiplier = 1;
@@ -45,9 +45,10 @@
 	}
 	// -
 	let params = {
-		vel: 0.2,
+		vel: 0.1,
 		maxVel: 0.2,
 		minVel: 0.04,
+		velFrame: 0.075,
 		translate: true,
 		rotate: true,
 		pointerSize: 3,
@@ -184,6 +185,8 @@
 	}
 
 	function updateVideo() {
+
+
 		position = params.translate ? {
 			x: pointers[1].px + ((pointers[0].px - pointers[1].px) * 0.5),
 			y: pointers[1].py + ((pointers[0].py - pointers[1].py) * 0.5)
@@ -195,24 +198,29 @@
 		// -
 		const distance = Math.sqrt( Math.pow( pointers[0].x - pointers[1].x, 2 ) + Math.pow( pointers[0].y - pointers[1].y, 2 ) );
 		const normalizedDistance = (distance - minDistance) / (maxDistance - minDistance);
-		framePercent = clamp(normalizedDistance, 0, 1);
+		framePercent += ( clamp(normalizedDistance, 0, 1) - framePercent ) * params.velFrame;
 
+		if(framePercent === 0){
+			frame = totalFrames - 1;
+		}else{
+			const newFrame = clamp(Math.round( framePercent * totalFrames ), 0, totalFrames - 1);
+			if( newFrame !== frame ) {
+				frame = newFrame;
+				// -
+				volume += 0.3;
+				sound.seek([soundDuration * framePercent], 0);
+				if( !sound.playing() ){
+					sound.play();
+				}
+			}
+		}
 
 		if( sound.playing() ){
 			sound.pause();
 		}
 		volume -= 0.1;
 
-		const newFrame = clamp(Math.round( framePercent * totalFrames ), 0, totalFrames - 1);
-		if( newFrame !== frame ) {
-			frame = newFrame;
-			// -
-			volume += 0.3;
-			sound.seek([soundDuration * framePercent], 0);
-			if( !sound.playing() ){
-				sound.play();
-			}
-		}
+		
 
 		volume = clamp( volume, 0, 1 );
 		sound.volume( volume * 5 );
